@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   },
   activeColor: {
     color: yellow[800],
-    backgroundColor: yellow[200],
+    backgroundColor: yellow[100],
   }
 }));
 
