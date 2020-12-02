@@ -8,19 +8,27 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import { yellow } from '@material-ui/core/colors';
 import SearchIcon from '@material-ui/icons/Search';
-import {
-  Button,
-  InputAdornment,
-  InputBase,
-  TextField,
-} from '@material-ui/core';
+import { Button, InputBase, ThemeProvider } from '@material-ui/core';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ReportOutlinedIcon from '@material-ui/icons/ReportOutlined';
+import { createMuiTheme } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import CloseIcon from '@material-ui/icons/Close';
 
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      // Purple and green play nicely together.
+      main: '#F5C44D',
+    },
+    secondary: {
+      // This is green.A700 as hex.
+      main: '#11cb5f',
+    },
+  },
+});
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -168,237 +176,238 @@ const Content = () => {
   };
 
   return (
-    <div className={classes.root}>
-      <h2>Q&A</h2>
-      <Paper color='white'>
-        <Tabs value={value} onChange={handleChange} indicatorColor='primary'>
-          <Tab
-            style={{ color: '#f57f17' }}
-            label='My Queries'
-            {...a11yProps(0)}
-          />
-          <Tab style={{ color: '#f57f17' }} label="Faq's" {...a11yProps(1)} />
-        </Tabs>
-        <TabPanel value={value} index={0}>
-          My Queries
-        </TabPanel>
-        <TabPanel value={value} index={1}>
-          <div>
-            <div className={classes.search}>
-              <div className={classes.searchIcon}>
-                <SearchIcon />
+    <ThemeProvider theme={theme}>
+      <div className={classes.root}>
+        <h2>Q&A</h2>
+        <Paper color='white'>
+          <Tabs value={value} onChange={handleChange} indicatorColor='primary' textColor='primary'>
+            <Tab
+              label='My Queries'
+              {...a11yProps(0)}
+            />
+            <Tab label="Faq's" {...a11yProps(1)} />
+          </Tabs>
+          <TabPanel value={value} index={0}>
+            My Queries
+          </TabPanel>
+          <TabPanel value={value} index={1}>
+            <div>
+              <div className={classes.search}>
+                <div className={classes.searchIcon}>
+                  <SearchIcon />
+                </div>
+                <InputBase
+                  placeholder='Search'
+                  classes={{
+                    root: classes.inputRoot,
+                    input: classes.inputInput,
+                  }}
+                  inputProps={{ 'aria-label': 'search' }}
+                />
               </div>
-              <InputBase
-                placeholder='Search'
-                classes={{
-                  root: classes.inputRoot,
-                  input: classes.inputInput,
-                }}
-                inputProps={{ 'aria-label': 'search' }}
-              />
             </div>
-          </div>
-          <div className={classes.ma4}>
-            <div>
-              <span>Filters:</span>
-              <Button
-                variant='outlined'
-                className={classes.ml2}
-                endIcon={<ArrowDropDownIcon />}
-                style={{
-                  borderRadius: '25px',
-                }}
-              >
-                Categories
-              </Button>
-              <Button
-                variant='outlined'
-                className={classes.ml2}
-                endIcon={<ArrowDropDownIcon />}
-                style={{
-                  borderRadius: '25px',
-                }}
-              >
-                Sub Categories
-              </Button>
-              <Button
-                variant='outlined'
-                className={classes.ml2}
-                endIcon={<ArrowDropDownIcon />}
-                style={{
-                  borderRadius: '25px',
-                }}
-              >
-                Sub2 Categories
-              </Button>
+            <div className={classes.ma4}>
+              <div>
+                <span>Filters:</span>
+                <Button
+                  variant='outlined'
+                  className={classes.ml2}
+                  endIcon={<ArrowDropDownIcon />}
+                  style={{
+                    borderRadius: '25px',
+                  }}
+                >
+                  Categories
+                </Button>
+                <Button
+                  variant='outlined'
+                  className={classes.ml2}
+                  endIcon={<ArrowDropDownIcon />}
+                  style={{
+                    borderRadius: '25px',
+                  }}
+                >
+                  Sub Categories
+                </Button>
+                <Button
+                  variant='outlined'
+                  className={classes.ml2}
+                  endIcon={<ArrowDropDownIcon />}
+                  style={{
+                    borderRadius: '25px',
+                  }}
+                >
+                  Sub2 Categories
+                </Button>
+              </div>
+              <div>
+                <span>Sort By:</span>
+                <Button
+                  variant='outlined'
+                  className={classes.ml2}
+                  endIcon={<ArrowDropDownIcon />}
+                  style={{
+                    borderRadius: '25px',
+                  }}
+                >
+                  Time
+                </Button>
+              </div>
             </div>
-            <div>
-              <span>Sort By:</span>
-              <Button
-                variant='outlined'
-                className={classes.ml2}
-                endIcon={<ArrowDropDownIcon />}
-                style={{
-                  borderRadius: '25px',
-                }}
-              >
-                Time
-              </Button>
+            <div className={classes.ml4}>
+              <h3>What is the use of Linear Algebra?</h3>
+              <span>
+                <Button
+                  onClick={handleOpen}
+                  className={classes.ml2}
+                  startIcon={<ReportOutlinedIcon />}
+                  style={{
+                    borderRadius: '25px',
+                  }}
+                >
+                  Report
+                </Button>
+              </span>
             </div>
-          </div>
-          <div className={classes.ml4}>
-            <h3>What is the use of Linear Algebra?</h3>
-            <span>
-              <Button
-                onClick={handleOpen}
-                className={classes.ml2}
-                startIcon={<ReportOutlinedIcon />}
-                style={{
-                  borderRadius: '25px',
-                }}
-              >
-                Report
-              </Button>
-            </span>
-          </div>
-          <div className={classes.ml4}>
-            <p>
-              It is editor is based on Prosemirror, fully extendable and
-              renderless. You can easily add custom nodes as Vue Components
-              easily add custom nodes as components easily add custom nodes as
-              Vue Components easily add custom nodes as Vue Components
-            </p>
-          </div>
-          <div className={classes.ml4}>
-            <h3>What is the use of Linear Algebra?</h3>
-            <span>
-              <Button
-                onClick={handleOpen}
-                className={classes.ml2}
-                startIcon={<ReportOutlinedIcon />}
-                style={{
-                  borderRadius: '25px',
-                }}
-              >
-                Report
-              </Button>
-            </span>
-          </div>
-          <div className={classes.ml4}>
-            <p>
-              It is editor is based on Prosemirror, fully extendable and
-              renderless. You can easily add custom nodes as Vue Components
-              easily add custom nodes as components easily add custom nodes as
-              Vue Components easily add custom nodes as Vue Components
-            </p>
-          </div>
-          <div className={classes.ml4}>
-            <h3>What is the use of Linear Algebra?</h3>
-            <span>
-              <Button
-                onClick={handleOpen}
-                className={classes.ml2}
-                startIcon={<ReportOutlinedIcon />}
-                style={{
-                  borderRadius: '25px',
-                }}
-              >
-                Report
-              </Button>
-            </span>
-          </div>
-          <div className={classes.ml4}>
-            <p>
-              It is editor is based on Prosemirror, fully extendable and
-              renderless. You can easily add custom nodes as Vue Components
-              easily add custom nodes as components easily add custom nodes as
-              Vue Components easily add custom nodes as Vue Components
-            </p>
-          </div>
-        </TabPanel>
-      </Paper>
-      <Modal
-        className={classes.modal}
-        open={open}
-        onClose={handleClose}
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
-      >
-        <Fade in={open}>
-          <div className={classes.paper} style={{ borderRadius: '20px' }}>
-            <div
-              style={{
-                background: '#f9a825',
-                color: 'white',
-                width: '100%',
-                borderTopLeftRadius: '20px',
-                borderTopRightRadius: '20px',
-                height: '60px',
-                display: 'flex',
-                justifyContent: 'space-between',
-              }}
-            >
-              <Button
-                className={classes.ml2}
-                startIcon={<ReportOutlinedIcon />}
-                style={{
-                  color: 'white',
-                }}
-              >
-                Report
-              </Button>
-              <Button
-                onClick={handleClose}
-                style={{
-                  color: 'white',
-                }}
-              >
-                <CloseIcon />
-              </Button>
-            </div>
-            <div className={classes.modalContent}>
-              <h3 id='transition-modal-title'>
-                What is the use of Linear Algebra?
-              </h3>
-              <p id='transition-modal-description'>
+            <div className={classes.ml4}>
+              <p>
                 It is editor is based on Prosemirror, fully extendable and
                 renderless. You can easily add custom nodes as Vue Components
                 easily add custom nodes as components easily add custom nodes as
                 Vue Components easily add custom nodes as Vue Components
               </p>
-              <h3 id='transition-modal-title'>What's your changes</h3>
-              <textarea style={{ width: '100%' }} rows='10'></textarea>
-              <div className={classes.buttonGroup}>
+            </div>
+            <div className={classes.ml4}>
+              <h3>What is the use of Linear Algebra?</h3>
+              <span>
                 <Button
-                  variant='outlined'
-                  disabled
-                  color='secondary'
-                  className={classes.ma2}
+                  onClick={handleOpen}
+                  className={classes.ml2}
+                  startIcon={<ReportOutlinedIcon />}
                   style={{
                     borderRadius: '25px',
                   }}
                 >
-                  Cancel
+                  Report
                 </Button>
+              </span>
+            </div>
+            <div className={classes.ml4}>
+              <p>
+                It is editor is based on Prosemirror, fully extendable and
+                renderless. You can easily add custom nodes as Vue Components
+                easily add custom nodes as components easily add custom nodes as
+                Vue Components easily add custom nodes as Vue Components
+              </p>
+            </div>
+            <div className={classes.ml4}>
+              <h3>What is the use of Linear Algebra?</h3>
+              <span>
                 <Button
-                  variant='contained'
+                  onClick={handleOpen}
+                  className={classes.ml2}
+                  startIcon={<ReportOutlinedIcon />}
+                  style={{
+                    borderRadius: '25px',
+                  }}
+                >
+                  Report
+                </Button>
+              </span>
+            </div>
+            <div className={classes.ml4}>
+              <p>
+                It is editor is based on Prosemirror, fully extendable and
+                renderless. You can easily add custom nodes as Vue Components
+                easily add custom nodes as components easily add custom nodes as
+                Vue Components easily add custom nodes as Vue Components
+              </p>
+            </div>
+          </TabPanel>
+        </Paper>
+        <Modal
+          className={classes.modal}
+          open={open}
+          onClose={handleClose}
+          BackdropComponent={Backdrop}
+          BackdropProps={{
+            timeout: 500,
+          }}
+        >
+          <Fade in={open}>
+            <div className={classes.paper} style={{ borderRadius: '20px' }}>
+              <div
+                style={{
+                  background: '#f9a825',
+                  color: 'white',
+                  width: '100%',
+                  borderTopLeftRadius: '20px',
+                  borderTopRightRadius: '20px',
+                  height: '60px',
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                }}
+              >
+                <Button
+                  className={classes.ml2}
+                  startIcon={<ReportOutlinedIcon />}
                   style={{
                     color: 'white',
-                    background: '#f9a825',
-                    borderRadius: '25px',
                   }}
-                  className={classes.ma2}
                 >
-                  Send
+                  Report
+                </Button>
+                <Button
+                  onClick={handleClose}
+                  style={{
+                    color: 'white',
+                  }}
+                >
+                  <CloseIcon />
                 </Button>
               </div>
+              <div className={classes.modalContent}>
+                <h3 id='transition-modal-title'>
+                  What is the use of Linear Algebra?
+                </h3>
+                <p id='transition-modal-description'>
+                  It is editor is based on Prosemirror, fully extendable and
+                  renderless. You can easily add custom nodes as Vue Components
+                  easily add custom nodes as components easily add custom nodes
+                  as Vue Components easily add custom nodes as Vue Components
+                </p>
+                <h3 id='transition-modal-title'>What's your changes</h3>
+                <textarea style={{ width: '100%' }} rows='10'></textarea>
+                <div className={classes.buttonGroup}>
+                  <Button
+                    variant='outlined'
+                    disabled
+                    color='secondary'
+                    className={classes.ma2}
+                    style={{
+                      borderRadius: '25px',
+                    }}
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    variant='contained'
+                    style={{
+                      color: 'white',
+                      background: '#f9a825',
+                      borderRadius: '25px',
+                    }}
+                    className={classes.ma2}
+                  >
+                    Send
+                  </Button>
+                </div>
+              </div>
             </div>
-          </div>
-        </Fade>
-      </Modal>
-    </div>
+          </Fade>
+        </Modal>
+      </div>
+    </ThemeProvider>
   );
 };
 
