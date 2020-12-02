@@ -156,6 +156,13 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'flex-end',
     justifyContent: 'flex-end',
   },
+  responsiveFilter: {
+    padding: theme.spacing(2),
+    [theme.breakpoints.down('md')]: {
+      display: 'flex',
+      flexDirection: 'column',
+    },
+  }
 }));
 
 const Content = () => {
@@ -207,11 +214,11 @@ const Content = () => {
               </div>
             </div>
             <div className={classes.ma4}>
-              <div>
+              <div className={classes.responsiveFilter}>
                 <span>Filters:</span>
                 <Button
                   variant='outlined'
-                  className={classes.ml2}
+                  className={classes.ma2}
                   endIcon={<ArrowDropDownIcon />}
                   style={{
                     borderRadius: '25px',
@@ -221,7 +228,7 @@ const Content = () => {
                 </Button>
                 <Button
                   variant='outlined'
-                  className={classes.ml2}
+                  className={classes.ma2}
                   endIcon={<ArrowDropDownIcon />}
                   style={{
                     borderRadius: '25px',
@@ -231,7 +238,7 @@ const Content = () => {
                 </Button>
                 <Button
                   variant='outlined'
-                  className={classes.ml2}
+                  className={classes.ma2}
                   endIcon={<ArrowDropDownIcon />}
                   style={{
                     borderRadius: '25px',
@@ -244,7 +251,7 @@ const Content = () => {
                 <span>Sort By:</span>
                 <Button
                   variant='outlined'
-                  className={classes.ml2}
+                  className={classes.ma2}
                   endIcon={<ArrowDropDownIcon />}
                   style={{
                     borderRadius: '25px',
