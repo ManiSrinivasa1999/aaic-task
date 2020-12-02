@@ -8,15 +8,12 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import AppBar from '@material-ui/core/AppBar';
 import Drawer from '@material-ui/core/Drawer';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import { yellow } from '@material-ui/core/colors';
-import Grid from '@material-ui/core/Grid';
 
 const drawerWidth = 340;
 
@@ -102,7 +99,7 @@ function App() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const theme = useTheme();
-
+  
   const handleDrawerOpen = () => {
     setOpen(true);
   };
