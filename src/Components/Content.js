@@ -387,9 +387,8 @@ const Content = () => {
                 <textarea style={{ width: '100%' }} rows='10'></textarea>
                 <div className={classes.buttonGroup}>
                   <Button
+                    onClick={handleClose}
                     variant='outlined'
-                    disabled
-                    color='secondary'
                     className={classes.ma2}
                     style={{
                       borderRadius: '25px',
